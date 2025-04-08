@@ -2,11 +2,11 @@
 This is a write-up of a small signal processing project I completed. It explains the thought process I followed and introduces Robust Principal Component Analysis (RPCA), which aims to separate a data matrix into a linearly regular part and a sparse, mostly empty part. I hope to encourage other scientists and engineers to explore the recently growing field of sparse and low-rank optimization, as it may prove surprisingly effective for seemingly difficult tasks.
 
 ## The problem
-The Norwegian Meteorological Institute researches methods of measuring snow depth on sea ice. In one of their projects, a drone equipped with a radar was used to fly over the ice, sending and receiving radar signals[[1]](#jenssen2023). A typical 'waveform' looks like this::
+The Norwegian Research Center (NORCE) researches methods of remotely measuring snow depth. In one of their projects, a drone equipped with a radar was used to fly over terrestrial snow, sending and receiving radar signals[[1]](#jenssen2023). A typical 'waveform' looks like this::
 
 ![Example waveform](example_waveform.png)
 
-You can stack multiple waveforms to create an image where pixel intensity represents signal strength:
+You can concentenate multiple waveforms to create an image where pixel intensity represents signal strength:
 
 ![Example waveform stack](example_waveform_stack.png)
 
@@ -14,7 +14,7 @@ However, in reality, the signal is extremely noisy. You can barely see the under
 
 ![Example noisy waveform stack](example_noisy_waveform_stack.png)
 
-This happens because the antennas used are not very directional. As a result, the receiving antenna picks up not only the intended reflections from the ice surface but also unwanted signals, including those reflected by the drone itself. The data must be preprocessed before the underlying signal can be analyzed.
+This happens because the antennas used are not very directional. As a result, the receiving antenna picks up not only the intended reflections from the snow target but also unwanted signals, including those reflected by the drone itself. The data must be preprocessed before the underlying signal can be analyzed.
 
 ## Method 1: Naive mean subtraction
 Most of the noise is caused by the measurement instrument itself. This is fortunate, as it means the noise is independent of the measurement location and therefore highly correlated between waveforms.
@@ -26,7 +26,7 @@ I started with the naive approach of assuming the noise is identical across wave
 The latent signal is clearly more visible, but some noise remains.
 
 ## Method 2: Principal component subtraction
-The current method used at the Norwegian Meteorological Institute is to apply principal component analysis (PCA) and discard the first few principal components. This makes sense, as PCA identifies linear relationships in the data, and the noise is clearly correlated between samples. The script `denoise_pca.py` implements this approach, producing the following result:
+One of the postprocessing methods used at NORCE is to apply principal component analysis (PCA) and discard the first few principal components. This makes sense, as PCA identifies linear relationships in the data, and the noise is clearly correlated between samples. The script `denoise_pca.py` implements this approach, producing the following result:
 
 ![PCA result](pca_result.png)
 

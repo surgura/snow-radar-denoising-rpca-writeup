@@ -1,4 +1,4 @@
-# Snow radar denoising using Robust Principal Component Analysis
+# Write-up on snow radar denoising using Robust Principal Component Analysis
 This is a write-up of a small signal processing project I completed. It explains the thought process I followed and introduces Robust Principal Component Analysis (RPCA), which aims to separate a data matrix into a linearly regular part and a sparse, mostly empty part. I hope to encourage other scientists and engineers to explore the recently growing field of sparse and low-rank optimization, as it may prove surprisingly effective for seemingly difficult tasks.
 
 ## The problem

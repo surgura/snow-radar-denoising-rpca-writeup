@@ -13,7 +13,7 @@ data = np.load("data/data.npy")
 
 results = {}
 mu = 1.0 / np.sqrt(max(data.shape))
-for dropx in [1, 4, 6, 10, 15]:
+for dropx in [1, 4, 6, 10, 20]:
     print(f"PCA, dropping # components = {dropx}")
     pca = PCA()
     pca_fit = pca.fit_transform(data)

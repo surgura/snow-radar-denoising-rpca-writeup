@@ -26,7 +26,11 @@ I start with the naive approach of assuming the noise is equal between each wave
 The latent signal is clearly better visible, but some of the noise remains.
 
 ## Method 2: Principal component subtraction
-TODO PCA method by rolf-ole
+The current method used at the Norwegian Meteorological Institute is to apply principal component analysis (PCA) and drop the first few principal components. This makes sense, as PCA find the linear relationships in the data, and the noise is definitely correlated between samples. The script 'denoise_pca' implements this approach, and provides the following result:
+
+![PCA result](pca_result.png)
+
+This look better than simply subtracting the noise. The result is even tunable with the number of principal components dropped. However, noise still remains, and dropping too many components starts degrading the signal, instead of removing more noise.
 
 ## Mathod 3: Robust princical component analysis
 TODO RPCA

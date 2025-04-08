@@ -1,7 +1,7 @@
 """
-Denoise data using RPCA.
+Denoise data using mean subtraction.
 
-Saves results to 'results/rpca_results.pickle'. See code for structure.
+Saves results to 'results/mean_results.pickle'. See code for structure.
 """
 
 import numpy as np

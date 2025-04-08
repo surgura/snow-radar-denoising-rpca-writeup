@@ -9,7 +9,7 @@ with open("results/mean_results.pickle", "rb") as f:
     mean_tiled = results["mean_tiled"]
     denoised = results["denoised"]
 
-fig, axes = plt.subplots(2, 2, figsize=(15, 5), constrained_layout=True)
+fig, axes = plt.subplots(2, 2, figsize=(15, 8), constrained_layout=True)
 
 vmin = data.min()
 vmax = data.max()

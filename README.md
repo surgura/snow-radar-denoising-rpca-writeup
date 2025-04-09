@@ -2,7 +2,7 @@
 This is a write-up of a small signal processing project I completed. It explains the thought process I followed and introduces Robust Principal Component Analysis (RPCA), which aims to separate a data matrix into a linearly regular part and a sparse, mostly empty part. I hope to encourage other scientists and engineers to explore the recently growing field of sparse and low-rank optimization, as it may prove surprisingly effective for seemingly difficult tasks.
 
 ## The problem
-The Norwegian Research Center (NORCE) researches methods of remotely measuring snow depth. In one of their projects, a drone equipped with a radar was used to fly over terrestrial snow, sending and receiving radar signals[[1]](#jenssen2023). A typical 'waveform' looks like this::
+The Norwegian Research Center (NORCE) researches methods of remotely measuring snow depth. In one of their projects, a drone equipped with a radar was used to fly over terrestrial snow, sending and receiving radar signals[[1]](#jenssen2023). A typical 'waveform' looks like this:
 
 ![Example waveform](example_waveform.png)
 

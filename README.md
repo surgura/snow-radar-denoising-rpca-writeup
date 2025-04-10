@@ -25,7 +25,7 @@ I started with the naive approach of assuming the noise is identical across wave
 
 The latent signal is clearly more visible, but some noise remains.
 
-## Method 2: Singular value subtraction
+## Method 2: Singular value high pass filter
 One of the postprocessing methods used at NORCE is to apply singular value decomposition (SVD) and discard the first few singular values. This makes sense, as SVD identifies linear relationships in the data, and the noise is clearly correlated between samples. The script `denoise_svd.py` implements this approach, producing the following result:
 
 ![SVD result](svd_result.png)

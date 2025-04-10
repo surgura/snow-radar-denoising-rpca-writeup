@@ -6,7 +6,7 @@ The Norwegian Research Center (NORCE) researches methods of remotely measuring s
 
 ![Example waveform](example_waveform.png)
 
-You can concentenate multiple waveforms to create an image where pixel intensity represents signal strength:
+You can concatenate multiple waveforms to create an image where pixel intensity represents signal strength:
 
 ![Example waveform stack](example_waveform_stack.png)
 

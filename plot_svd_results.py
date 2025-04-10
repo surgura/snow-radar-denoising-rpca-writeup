@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 data = np.load("data/data.npy")
-with open("results/pca_results.pickle", "rb") as f:
+with open("results/svd_results.pickle", "rb") as f:
     results = pickle.load(f)
 
 fig, axes = plt.subplots(3, 2, figsize=(15, 10), constrained_layout=True, sharey=True)
@@ -20,5 +20,5 @@ for ax, dropx in zip(axes.flatten()[1:], [1, 4, 6, 10, 20], strict=True):
     ax.set_title(f"Sparse component (dropped {dropx} largest components)")
     ax.set_xlabel("Sample index")
 
-plt.savefig("pca_result.png")
+plt.savefig("svd_result.png")
 plt.show()

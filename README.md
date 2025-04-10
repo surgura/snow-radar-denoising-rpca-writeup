@@ -25,15 +25,15 @@ I started with the naive approach of assuming the noise is identical across wave
 
 The latent signal is clearly more visible, but some noise remains.
 
-## Method 2: Principal component subtraction
-One of the postprocessing methods used at NORCE is to apply principal component analysis (PCA) and discard the first few principal components. This makes sense, as PCA identifies linear relationships in the data, and the noise is clearly correlated between samples. The script `denoise_pca.py` implements this approach, producing the following result:
+## Method 2: Singular value subtraction
+One of the postprocessing methods used at NORCE is to apply singular value decomposition (SVD) and discard the first few singular values. This makes sense, as SVD identifies linear relationships in the data, and the noise is clearly correlated between samples. The script `denoise_svd.py` implements this approach, producing the following result:
 
-![PCA result](pca_result.png)
+![SVD result](svd_result.png)
 
 This looks better than simply subtracting the mean. The result is also tunable via the number of components removed. However, some noise still remains, and discarding too many components starts degrading the signal instead of improving it.
 
 ## Method 3: Robust principal component analysis
-In recent years, a technique called Robust Principal Component Analysis (RPCA) has gained popularity[[2]](#candes2011). This algorithm separates a matrix into two parts: one sparse (many zeros) and one low-rank (rows are highly correlated; i.e., there is a lot of linear structure). Our noise is clearly low-rank, as our earlier methods (mean subtraction and PCA) already perform reasonably well. The latent signal also appears sparse, as suggested by our preliminary results. This makes our problem an ideal candidate for RPCA.
+In recent years, a technique called Robust Principal Component Analysis (RPCA) has gained popularity[[2]](#candes2011). This algorithm separates a matrix into two parts: one sparse (many zeros) and one low-rank (rows are highly correlated; i.e., there is a lot of linear structure). Our noise is clearly low-rank, as our earlier methods (mean subtraction and SVD) already perform reasonably well. The latent signal also appears sparse, as suggested by our preliminary results. This makes our problem an ideal candidate for RPCA.
 
 RPCA refers to a matrix decomposition problem where the goal is to separate a dataset into a low-rank component and a sparse component. Multiple algorithms exist to solve or approximate this decomposition. I implemented a simple Python package for RPCA[[3]](#stuurmanpyrpca) that solves the PCP convex relaxation using the IALM algorithm. It's not essential to understand the algorithmic details here, but the repository provides technical references.
 
